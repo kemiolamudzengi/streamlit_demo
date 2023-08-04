@@ -5,7 +5,7 @@ import altair as alt
 
 from vega_datasets import data
 
-source = pd.read_csv
+source = pd.read_csv('cars_data.csv')
 
 brush = alt.selection_interval(resolve='global')
 
