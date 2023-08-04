@@ -3,11 +3,22 @@ import pandas as pd
 import numpy as np
 import altair as alt
 
-chart_data = pd.DataFrame(
-    np.random.randn(20, 3),
-    columns=['a', 'b', 'c'])
+from vega_datasets import data
 
-c = alt.Chart(chart_data).mark_circle().encode(
-    x='a', y='b', size='c', color='c', tooltip=['a', 'b', 'c'])
+source = data.cars()
+
+brush = alt.selection_interval(resolve='global')
+
+base = alt.Chart(source).mark_point().encode(
+    y='Miles_per_Gallon',
+    color=alt.condition(brush, 'Origin', alt.ColorValue('gray')),
+).add_params(
+    brush
+).properties(
+    width=250,
+    height=250
+)
+
+c = base.encode(x='Horsepower') | base.encode(x='Acceleration')
 
 st.altair_chart(c, use_container_width=True)
