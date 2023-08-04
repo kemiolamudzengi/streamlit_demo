@@ -9,7 +9,7 @@ source = pd.read_csv('cars_data.csv')
 brush = alt.selection_interval(resolve='global')
 
 base = alt.Chart(source).mark_point().encode(
-    y='Miles_per_Gallon',
+    y='mileage',
     color=alt.condition(brush, 'Origin', alt.ColorValue('gray')),
 ).add_params(
     brush
@@ -18,6 +18,6 @@ base = alt.Chart(source).mark_point().encode(
     height=250
 )
 
-c = base.encode(x='Horsepower') | base.encode(x='Acceleration')
+c = base.encode(x='hp') | base.encode(x='acceleration')
 
 st.altair_chart(c, use_container_width=True)
