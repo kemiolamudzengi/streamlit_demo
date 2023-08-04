@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import altair as alt
 
-from vega_datasets import data
 
 source = pd.read_csv('cars_data.csv')
 
