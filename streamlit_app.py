@@ -10,7 +10,7 @@ brush = alt.selection_interval(resolve='global')
 
 base = alt.Chart(source).mark_point().encode(
     y='mileage',
-    color=alt.condition(brush, 'Origin', alt.ColorValue('gray')),
+    color=alt.condition(brush, 'country', alt.ColorValue('gray')),
 ).add_params(
     brush
 ).properties(
